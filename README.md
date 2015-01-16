@@ -7,7 +7,7 @@ some credits go to the original author.
 
 ## Usage
 
-File to convert need to be provided as first argument to `docker run`.
+File to convert needs to be provided as first argument to `docker run`.
 
 You need to mount volume to `/tmp/currentjob` in Docker; xelatex will be run
 in that directory. I made it that way (rather than streaming `*.tex` files
@@ -29,3 +29,8 @@ Because I needed some custom fonts, I'm also running `fc-cache` before every
 conversion. That's why you can simply add a volume to `/root/.fonts` with your
 custom fonts, and they will be available for xelatex.
 
+For example:
+
+```bash
+docker run -v $(pwd):/tmp/currentjob -v $HOME/.fonts:/root/.fonts modrzew/latex file.tex
+```
