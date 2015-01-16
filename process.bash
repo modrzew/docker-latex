@@ -1,10 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-cd /tmp
+echo Refreshing fonts cache...
+fc-cache
+mkdir /tmp/output
+cd /tmp/currentjob
+xelatex --interaction=nonstopmode --output-directory=/tmp/output $1
+cp -f /tmp/output/*.pdf .
 
-jobname=`uuidgen`
-
-cat /dev/fd/0>/tmp/$jobname.latex
-
-pdflatex --interaction=nonstopmode /tmp/$jobname.latex &>/dev/null
-cat /tmp/$jobname.pdf
